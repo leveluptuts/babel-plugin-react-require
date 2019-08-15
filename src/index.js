@@ -1,16 +1,17 @@
-export default function ({ types: t }) {
+export default function({ types: t }) {
   const plugin = {
     visitor: {
       Program: {
         enter(path, { file }) {
           // Do nothing if React is already declared
-          if (path.scope.hasBinding('React')) {
+          if (path.scope.hasBinding('PropTypes')) {
             return;
           }
 
-          const ourNode = t.importDeclaration([
-            t.importDefaultSpecifier(t.identifier('React')),
-          ], t.stringLiteral('react'));
+          const ourNode = t.importDeclaration(
+            [t.importDefaultSpecifier(t.identifier('PropTypes'))],
+            t.stringLiteral('prop-types')
+          );
 
           // Add an import early, so that other plugins get to see it
           file.set('ourPath', path.unshiftContainer('body', ourNode)[0]);
@@ -29,12 +30,12 @@ export default function ({ types: t }) {
             }
             file.set('ourPath', undefined);
           }
-        },
+        }
       },
 
       ImportDeclaration(path, { file }) {
         // Return early if this has nothing to do with React
-        if (path.node.specifiers.every(x => x.local.name !== 'React')) {
+        if (path.node.specifiers.every(x => x.local.name !== 'PropTypes')) {
           return;
         }
 
@@ -51,8 +52,8 @@ export default function ({ types: t }) {
 
       JSXOpeningElement(_, { file }) {
         file.set('hasJSX', true);
-      },
-    },
+      }
+    }
   };
 
   if (t.jSXOpeningFragment) {

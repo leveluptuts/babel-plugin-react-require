@@ -1,29 +1,20 @@
 {
-  "name": "babel-plugin-react-require",
-  "version": "3.1.1",
-  "description": "Babel plugin that adds React import declaration if file contains JSX tags.",
+  "name": "babel-plugin-proptypes-require",
+  "version": "1.0.0",
+  "description": "Babel plugin that adds PropTypes import declaration if file contains JSX tags.",
   "keywords": [
     "babel",
     "babel-plugin",
     "react",
     "jsx"
   ],
-  "homepage": "https://github.com/vslinko/babel-plugin-react-require",
-  "bugs": {
-    "url": "https://github.com/vslinko/babel-plugin-react-require/issues",
-    "email": "vslinko@yahoo.com"
-  },
   "license": "MIT",
   "author": {
-    "name": "Vyacheslav Slinko",
-    "email": "vslinko@yahoo.com",
-    "url": "https://twitter.com/vslinko"
+    "name": "Scott Tolinski",
+    "email": "scott.tolinski@gmail.com",
+    "url": "https://twitter.com/stolinski"
   },
   "main": "lib",
-  "repository": {
-    "type": "git",
-    "url": "vslinko/babel-plugin-react-require"
-  },
   "scripts": {
     "clean": "rimraf coverage lib",
     "build": "babel src -d lib",
